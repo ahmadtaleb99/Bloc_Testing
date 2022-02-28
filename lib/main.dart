@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:untitled/Bloc/BrightnessCubit.dart';
 import 'package:untitled/Bloc/NotificationCubit.dart';
 
+import 'Bloc/BrightnessState.dart';
 import 'HomePage.dart';
 
-void main() {
-  runApp(const MyApp());
+ bool kIsDarkMode = false;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
+  );
+  HydratedBlocOverrides.runZoned(
+        () => runApp(MyApp()),
+    storage: storage,
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,11 +26,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:
-      BlocProvider(
-        create: (context) => NotificationCubit(),
-        child: HomePage(),
+    return BlocProvider(
+      create: (_) => BrightnessCubit(),
+      child: BlocBuilder<BrightnessCubit, BrightnessState>(
+        builder: (context, state) {
+          kIsDarkMode = state.isDark;
+
+          return MaterialApp(
+            theme: ThemeData(
+        brightness: state.isDark ?  Brightness.dark : Brightness.light
+            ),
+            home:
+            MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => NotificationCubit(),
+                ),
+
+              ],
+              child: HomePage(),
+            ),
+          );
+        },
       ),
     );
   }

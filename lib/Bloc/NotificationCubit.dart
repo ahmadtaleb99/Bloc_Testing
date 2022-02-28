@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:untitled/Bloc/NotificationState.dart';
 
-class NotificationCubit extends Cubit<NotificationState> {
+class NotificationCubit extends Cubit<NotificationState>   {
   NotificationCubit() : super(EmailState(isToggled: true));
 
-  bool isToggled =false ;
-  String _s;
 
-
-
-  void toggleEmail (bool value ){
-    emit(EmailState(isToggled: !value));
+  Future<void> toggleEmail(bool value) async {
+    emit(EmailLoading());
+    await Future.delayed(Duration(seconds: 1));
+    emit(EmailState(isToggled: value));
   }
+
 
 }

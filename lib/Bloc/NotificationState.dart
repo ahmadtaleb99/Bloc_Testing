@@ -6,11 +6,20 @@ abstract class NotificationState extends Equatable {
 
 class EmailState extends NotificationState {
   EmailState({required this.isToggled});
-
   bool isToggled = false ;
   @override
   // TODO: implement props
   List<Object?> get props => [isToggled ];
+
+}
+
+
+class EmailLoading extends NotificationState {
+
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [] ;
 
 }
 
