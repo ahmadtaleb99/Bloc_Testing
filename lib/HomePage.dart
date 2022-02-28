@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
               )),
               ElevatedButton(onPressed: () {
                 context.read<BrightnessCubit>().low();
-              }, child: Text('Low')),
+              }, child: Text('Low ')),
 
 
             ],
