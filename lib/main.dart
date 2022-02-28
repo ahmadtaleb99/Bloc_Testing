@@ -4,6 +4,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:untitled/Bloc/BrightnessCubit.dart';
 import 'package:untitled/Bloc/NotificationCubit.dart';
+import 'package:untitled/Bloc/blocObserver.dart';
 
 import 'Bloc/BrightnessState.dart';
 import 'HomePage.dart';
@@ -15,8 +16,11 @@ void main() async {
   final storage = await HydratedStorage.build(
     storageDirectory: await getApplicationDocumentsDirectory(),
   );
+
+
   HydratedBlocOverrides.runZoned(
         () => runApp(MyApp()),
+    blocObserver: AppBlocObserver(),
     storage: storage,
   );
 }

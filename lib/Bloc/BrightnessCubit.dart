@@ -30,4 +30,19 @@ class BrightnessCubit extends Cubit<BrightnessState>  with HydratedMixin{
   Map<String, dynamic>? toJson(BrightnessState state) {
     return state.toJson();
   }
+  @override
+  void onChange(Change<BrightnessState> change) {
+    print(change.nextState);
+    super.onChange(change);
+  }
+
+
+
+  @override
+  Future<void> close() {
+    print('close  brightness');
+    return super.close();
+  }
+
+
 }

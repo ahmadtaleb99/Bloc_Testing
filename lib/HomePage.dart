@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/Bloc/BrightnessCubit.dart';
 import 'package:untitled/Bloc/BrightnessState.dart';
 import 'package:untitled/Bloc/NotificationCubit.dart';
+import 'package:untitled/SecondScreen.dart';
 import 'package:untitled/main.dart';
 
 import 'Bloc/NotificationState.dart';
@@ -64,6 +65,12 @@ class HomePage extends StatelessWidget {
                 context.read<BrightnessCubit>().low();
               }, child: Text('Low ')),
 
+              ElevatedButton(onPressed: () {
+                context.read<BrightnessCubit>().close();
+                Navigator.pop(context);
+
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen()));
+              }, child: Text('go to  ')),
 
             ],
           ),

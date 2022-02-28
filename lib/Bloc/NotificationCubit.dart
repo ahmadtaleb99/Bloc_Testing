@@ -13,4 +13,10 @@ class NotificationCubit extends Cubit<NotificationState>   {
   }
 
 
+  @override
+  Future<void> close() {
+    print('noti closed');
+    return super.close();
+  }
+
 }

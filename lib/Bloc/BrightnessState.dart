@@ -8,4 +8,8 @@
 
   Map<String, dynamic> toJson() => {'isDark':  this.isDark};
 
+  @override
+  String toString() {
+    return 'BrightnessState{isDark: $isDark}';
+  }
 }
