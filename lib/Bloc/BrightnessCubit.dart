@@ -38,6 +38,7 @@ class BrightnessCubit extends Cubit<BrightnessState>  with HydratedMixin{
 
 
 
+
   @override
   Future<void> close() {
     print('close  brightness');

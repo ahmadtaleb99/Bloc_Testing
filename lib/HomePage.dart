@@ -66,8 +66,6 @@ class HomePage extends StatelessWidget {
               }, child: Text('Low ')),
 
               ElevatedButton(onPressed: () {
-                context.read<BrightnessCubit>().close();
-                Navigator.pop(context);
 
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen()));
               }, child: Text('go to  ')),

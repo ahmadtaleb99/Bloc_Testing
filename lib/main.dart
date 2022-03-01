@@ -9,7 +9,7 @@ import 'package:untitled/Bloc/blocObserver.dart';
 import 'Bloc/BrightnessState.dart';
 import 'HomePage.dart';
 
- bool kIsDarkMode = false;
+bool kIsDarkMode = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,19 +36,22 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           kIsDarkMode = state.isDark;
 
-          return MaterialApp(
-            theme: ThemeData(
-        brightness: state.isDark ?  Brightness.dark : Brightness.light
-            ),
-            home:
-            MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (context) => NotificationCubit(),
-                ),
+          return RepositoryProvider(
+            create: (context) => SubjectRepository(),
+            child: MaterialApp(
+              theme: ThemeData(
+                  brightness: state.isDark ? Brightness.dark : Brightness.light
+              ),
+              home:
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) => NotificationCubit(),
+                  ),
 
-              ],
-              child: HomePage(),
+                ],
+                child: HomePage(),
+              ),
             ),
           );
         },
